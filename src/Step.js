@@ -120,9 +120,9 @@ export default class Step extends Component {
     );
     const titleStyle = Object.assign(
       styles.title,
+      customTitleStyle || {},
       completed ? styles.completedTitle : {},
-      active ? styles.activeTitle : {},
-      customTitleStyle || {}
+      active ? styles.activeTitle : {}
     );
     const leftStyle = Object.assign(styles.leftBar, (active || completed) ? styles.completedBar : {});
     const rightStyle = Object.assign(styles.rightBar, completed ? styles.completedBar : {});
