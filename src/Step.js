@@ -109,18 +109,20 @@ export default class Step extends Component {
   }
 
   render() {
-    const { title, icon, index, active, completed, first, isLast, href, onClick, customCircleStyle } = this.props;
+    const { title, icon, index, active, completed, first, isLast, href, onClick, customCircleStyle, customTitleStyle, customCircleClass, customTitleClass } = this.props;
 
     const styles = this.getStyles();
     const circleStyle = Object.assign(
       styles.circle,
       completed ? styles.completedCircle : {},
       active ? styles.activeCircle : {},
+      customCircleStyle || {}
     );
     const titleStyle = Object.assign(
       styles.title,
       completed ? styles.completedTitle : {},
       active ? styles.activeTitle : {},
+      customTitleStyle || {}
     );
     const leftStyle = Object.assign(styles.leftBar, (active || completed) ? styles.completedBar : {});
     const rightStyle = Object.assign(styles.rightBar, completed ? styles.completedBar : {});
@@ -129,11 +131,11 @@ export default class Step extends Component {
 
     return (
       <div style={ styles.step }>
-        <div style={[circleStyle, customCircleStyle]}>
+        <div style={circleStyle} className={customCircleClass}>
         {active || completed ? (
-          <a href={href} onClick={onClick} style={ styles.index }>{ stepContent }</a>
+          <a href={href} onClick={onClick} style={ styles.index } className={customTitleClass}>{ stepContent }</a>
         ) : (
-          <span style={ styles.index }>{ stepContent }</span>
+          <span style={ styles.index } className={customTitleClass}>{ stepContent }</span>
         )}
         </div>
         {active || completed ? (
