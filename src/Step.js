@@ -56,7 +56,6 @@ export default class Step extends Component {
         borderStyle: completeBorderStyle,
       },
       index: {
-        lineHeight: `${size + circleFontSize / 4}px`,
         color: circleFontColor
       },
       title: {
@@ -113,11 +112,11 @@ export default class Step extends Component {
     const { title, icon, index, active, completed, first, isLast, href, onClick, customCircleStyle } = this.props;
 
     const styles = this.getStyles();
-    const circleStyle = [Object.assign(
+    const circleStyle = Object.assign(
       styles.circle,
       completed ? styles.completedCircle : {},
       active ? styles.activeCircle : {},
-    ), customCircleStyle];
+    );
     const titleStyle = Object.assign(
       styles.title,
       completed ? styles.completedTitle : {},
@@ -130,7 +129,7 @@ export default class Step extends Component {
 
     return (
       <div style={ styles.step }>
-        <div style={ circleStyle }>
+        <div style={[circleStyle, customCircleStyle]}>
         {active || completed ? (
           <a href={href} onClick={onClick} style={ styles.index }>{ stepContent }</a>
         ) : (
