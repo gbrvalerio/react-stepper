@@ -70,6 +70,7 @@ export default class Step extends Component {
       activeTitle: {
         color: activeTitleColor,
         opacity: activeTitleOpacity,
+        fontWeight: 'bold'
       },
       completedTitle: {
         color: completeTitleColor,
